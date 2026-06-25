@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 project(bop_renderer LANGUAGES C CXX)
 
-set(CMAKE_MODULE_PATH CMake $CMAKE_MODULE_PATH)
+set(CMAKE_MODULE_PATH CMake ${CMAKE_MODULE_PATH})
 
 find_package(Python COMPONENTS Interpreter Development)
 find_package(OSMesa REQUIRED)
