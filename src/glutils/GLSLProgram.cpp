@@ -59,7 +59,7 @@ void GLSLProgram::release() {
 }
 
 void GLSLProgram::compileShader( const char * fileName )
-  throw( GLSLProgramException ) {
+  noexcept(false) {
     int numExts = sizeof(GLSLShaderInfo::extensions) / sizeof(GLSLShaderInfo::shader_file_extension);
 
     // Check the file name's extension to determine the shader type
@@ -96,7 +96,7 @@ string GLSLProgram::getExtension( const char * name ) {
 
 void GLSLProgram::compileShader( const char * fileName,
     GLSLShader::GLSLShaderType type )
-throw( GLSLProgramException )
+noexcept(false)
 {
   if( ! fileExists(fileName) )
   {
@@ -128,7 +128,7 @@ throw( GLSLProgramException )
 void GLSLProgram::compileShader( const string & source, 
     GLSLShader::GLSLShaderType type,
     const char * fileName )
-throw(GLSLProgramException)
+noexcept(false)
 {
   if( handle <= 0 ) {
     handle = glCreateProgram();
@@ -176,7 +176,7 @@ throw(GLSLProgramException)
   }
 }
 
-void GLSLProgram::link() throw(GLSLProgramException)
+void GLSLProgram::link() noexcept(false)
 {
   if( linked ) return;
   if( handle <= 0 ) 
@@ -208,7 +208,7 @@ void GLSLProgram::link() throw(GLSLProgramException)
   }    
 }
 
-void GLSLProgram::use() throw(GLSLProgramException)
+void GLSLProgram::use() noexcept(false)
 {
   if( handle <= 0 || (! linked) )
     throw GLSLProgramException("Shader has not been linked");
@@ -305,7 +305,7 @@ void GLSLProgram::setUniform( const char *name, bool val )
 }
 
 
-void GLSLProgram::validate() throw(GLSLProgramException)
+void GLSLProgram::validate() noexcept(false)
 {
   if( ! isLinked() ) 
     throw GLSLProgramException("Program is not linked");
