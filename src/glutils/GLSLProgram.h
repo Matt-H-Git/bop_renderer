@@ -55,14 +55,14 @@ class GLSLProgram
     GLSLProgram();
     ~GLSLProgram();
 
-    void   compileShader( const char *fileName ) throw (GLSLProgramException);
-    void   compileShader( const char * fileName, GLSLShader::GLSLShaderType type ) throw (GLSLProgramException);
+    void   compileShader( const char *fileName ) noexcept(false);
+    void   compileShader( const char * fileName, GLSLShader::GLSLShaderType type ) noexcept(false);
     void   compileShader( const string & source, GLSLShader::GLSLShaderType type, 
-        const char *fileName = NULL ) throw (GLSLProgramException);
+        const char *fileName = NULL ) noexcept(false);
 
-    void   link() throw (GLSLProgramException);
-    void   validate() throw(GLSLProgramException);
-    void   use() throw (GLSLProgramException);
+    void   link() noexcept(false);
+    void   validate() noexcept(false);
+    void   use() noexcept(false);
     void   release();
 
     int    getHandle();
