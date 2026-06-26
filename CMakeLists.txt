@@ -40,6 +40,19 @@ set(SOURCEFILES
         3rd/lodepng/lodepng.cpp
         )
 
+# Static library for use as a C++ dependency.
+add_library(bop_renderer_lib STATIC ${HEADERFILES} ${SOURCEFILES})
+
+target_link_libraries(bop_renderer_lib PUBLIC OSMesa::OSMesa)
+
+target_include_directories(bop_renderer_lib PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/3rd>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/3rd/glm>
+        $<INSTALL_INTERFACE:include/bop_renderer>
+)
+
+
 # Python module.
 pybind11_add_module(bop_renderer MODULE
         src/PythonWrapper.cpp ${HEADERFILES} ${SOURCEFILES})
